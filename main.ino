@@ -1,3 +1,6 @@
+#include <cstdlib>
+#include <ctime>
+
 int chessboard[64] = {11,12,13,14,15,16,17,18,
                        21,22,23,24,25,26,27,28,
                        0,0,0,0,0,0,0,0,
@@ -23,11 +26,11 @@ class move{
   };
 void playFirst(){
   for(int i=0; i==1; i){
-    
-  int piece = random(63);
-  if(chessboard[piece]==41||chessboard[piece]==42||chessboard[piece]==42||chessboard[piece]==43||chessboard[piece]==44||chessboard[piece]==45||chessboard[piece]==46||chessboard[piece]==47||chessboard[piece]==48||chessboard[piece]==31||chessboard[piece]==32||chessboard[piece]==33||chessboard[piece]==34||chessboard[piece]==35||chessboard[piece]==36||chessboard[piece]==37||chessboard[piece]==38){
-    i=1;
-  }
+    srand(time(0));
+    int piece = rand()%64;
+    if(chessboard[piece]==41||chessboard[piece]==42||chessboard[piece]==42||chessboard[piece]==43||chessboard[piece]==44||chessboard[piece]==45||chessboard[piece]==46||chessboard[piece]==47||chessboard[piece]==48||chessboard[piece]==31||chessboard[piece]==32||chessboard[piece]==33||chessboard[piece]==34||chessboard[piece]==35||chessboard[piece]==36||chessboard[piece]==37||chessboard[piece]==38){
+        i=1;
+    }
   }
   /*int piece = chessboard[pieceId];
   if(piece == 41 || piece == 48) {
@@ -36,7 +39,7 @@ void playFirst(){
     }
   }*/
 }
-void checkSquare(int square){
+int checkSquare(int square){
   if(chessboard[square]<30 && chessboard[square]!=0){
     return 1;
   }
@@ -56,7 +59,7 @@ void generateMoves(int pieceLocation){
   int tempY;
   int tempLocation;
   int numberofMoves=0;
-  int squareValue=checkSquare();
+  int squareValue=checkSquare(pieceLocation);
   if(chessboard[piece]==41||chessboard[piece]==48||chessboard[piece]==11||chessboard[piece]==18){
     for(int x=xCoordinate+1; x<8; x++){
       tempLocation=(yCoordinate*8+x);
@@ -103,7 +106,7 @@ void generateMoves(int pieceLocation){
   }
   
 }
-void evaluatePosition(int board[64]){
+float evaluatePosition(int board[64]){
   //piece evaluation
   int evaluationScore = 0;
   int whiteScore;
@@ -286,7 +289,7 @@ void evaluatePosition(int board[64]){
       blackScore += pawnStat[(63-i)];
     }
     }
-    evaluationScore=(whiteScore - blackScore);
+    evaluationScore=(whiteScore - blackScore)/100;
     return evaluationScore;
 }
 
