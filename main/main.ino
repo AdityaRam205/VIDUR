@@ -197,7 +197,8 @@ void generateMoves(int pieceLocation){
         moves[numberofMoves][0]=tempLocation;
         numberofMoves += 1;
       }
-    }x = xCoordinate - 1;
+    }
+    x = xCoordinate - 1;
     y = yCoordinate + 2;
     tempLocation = y*8+x;
     if(xCoordinate > 0 && yCoordinate < 6){
@@ -205,7 +206,8 @@ void generateMoves(int pieceLocation){
         moves[numberofMoves][0]=tempLocation;
         numberofMoves += 1;
       }
-    }x = xCoordinate + 1;
+    }
+    x = xCoordinate + 1;
     y = yCoordinate - 2;
     tempLocation = y*8+x;
     if(xCoordinate < 7 && yCoordinate > 1){
@@ -213,7 +215,8 @@ void generateMoves(int pieceLocation){
         moves[numberofMoves][0]=tempLocation;
         numberofMoves += 1;
       }
-    }x = xCoordinate - 1;
+    }
+    x = xCoordinate - 1;
     y = yCoordinate - 2;
     tempLocation = y*8+x;
     if(xCoordinate > 0 && yCoordinate > 1){
