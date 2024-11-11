@@ -53,8 +53,8 @@ int checkSquare(int square){
 void generateMoves(int pieceLocation){
   int moves[40][2];
   int piece=chessboard[pieceLocation];
-  int xCoordinate=(pieceLocation % 8)+1;
-  int yCoordinate=pieceLocation/8;
+  int xCoordinate=(pieceLocation % 8);
+  int yCoordinate=(pieceLocation / 8);
   int tempX;
   int tempY;
   int tempLocation;
@@ -68,6 +68,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int x=xCoordinate-1; x>0; x--){
       tempLocation=(yCoordinate*8+x);
@@ -76,6 +79,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int y=yCoordinate+1; y<8; y++){
       tempLocation=(y*8+xCoordinate);
@@ -84,6 +90,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int y=yCoordinate-1; y>0; y--){
       tempLocation=(y*8+xCoordinate);
@@ -92,6 +101,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
   }
   if(chessboard[piece]==43||chessboard[piece]==46||chessboard[piece]==13||chessboard[piece]==16){
@@ -102,6 +114,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int x=xCoordinate+1, y=yCoordinate-1; x<8 && y>0; x++, y--){
       tempLocation=(y*8+x);
@@ -110,6 +125,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int x=xCoordinate-1, y=yCoordinate+1; x>0 && y<8; x--, y++){
       tempLocation=(y*8+x);
@@ -118,6 +136,9 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
     for(int x=xCoordinate-1, y=yCoordinate-1; x>0 && y>0; x--, y--){
       tempLocation=(y*8+x);
@@ -126,9 +147,82 @@ void generateMoves(int pieceLocation){
       }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
+      if(squareValue != 0){
+        break;
+      }
     }
   }
-  
+  if(chessboard[piece]==42||chessboard[piece]==47||chessboard[piece]==12||chessboard[piece]==17){
+    int x = xCoordinate + 2;
+    int y = yCoordinate + 1;
+    tempLocation = y*8+x;
+    if(xCoordinate < 6 && yCoordinate < 7){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }
+    x = xCoordinate + 2;
+    y = yCoordinate - 1;
+    tempLocation = y*8+x;
+    if(xCoordinate < 6 && yCoordinate > 0){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }
+    x = xCoordinate - 2;
+    y = yCoordinate + 1;
+    tempLocation = y*8+x;
+    if(xCoordinate > 1 && yCoordinate < 7){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }
+    x = xCoordinate - 2;
+    y = yCoordinate - 1;
+    tempLocation = y*8+x;
+    if(xCoordinate > 1 && yCoordinate > 0){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }
+    x = xCoordinate + 1;
+    y = yCoordinate + 2;
+    tempLocation = y*8+x;
+    if(xCoordinate < 7 && yCoordinate < 6){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }x = xCoordinate - 1;
+    y = yCoordinate + 2;
+    tempLocation = y*8+x;
+    if(xCoordinate > 0 && yCoordinate < 6){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }x = xCoordinate + 1;
+    y = yCoordinate - 2;
+    tempLocation = y*8+x;
+    if(xCoordinate < 7 && yCoordinate > 1){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }x = xCoordinate - 1;
+    y = yCoordinate - 2;
+    tempLocation = y*8+x;
+    if(xCoordinate > 0 && yCoordinate > 1){
+      if(squareValue != checkSquare(tempLocation)){
+        moves[numberofMoves][0]=tempLocation;
+        numberofMoves += 1;
+      }
+    }
+  }
 }
 float evaluatePosition(int board[64]){
   //piece evaluation
