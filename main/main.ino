@@ -63,21 +63,33 @@ void generateMoves(int pieceLocation){
   if(chessboard[piece]==41||chessboard[piece]==48||chessboard[piece]==11||chessboard[piece]==18){
     for(int x=xCoordinate+1; x<8; x++){
       tempLocation=(yCoordinate*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int x=xCoordinate-1; x>0; x--){
       tempLocation=(yCoordinate*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int y=yCoordinate+1; y<8; y++){
       tempLocation=(y*8+xCoordinate);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int y=yCoordinate-1; y>0; y--){
       tempLocation=(y*8+xCoordinate);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
@@ -85,21 +97,33 @@ void generateMoves(int pieceLocation){
   if(chessboard[piece]==43||chessboard[piece]==46||chessboard[piece]==13||chessboard[piece]==16){
     for(int x=xCoordinate+1, y=yCoordinate+1; x<8 && y<8; x++, y++){
       tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int x=xCoordinate+1, y=yCoordinate-1; x<8 && y>0; x++, y--){
       tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int x=xCoordinate-1, y=yCoordinate+1; x>0 && y<8; x--, y++){
       tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
     for(int x=xCoordinate-1, y=yCoordinate-1; x>0 && y>0; x--, y--){
       tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
       moves[numberofMoves][0]=tempLocation;
       numberofMoves+=1;
     }
@@ -300,5 +324,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+
 }
