@@ -27,8 +27,9 @@ class move{
 void playFirst(){
   for(int i=0; i==1; i){
     srand(time(0));
-    int piece = rand()%64;
-    if(chessboard[piece]==41||chessboard[piece]==42||chessboard[piece]==42||chessboard[piece]==43||chessboard[piece]==44||chessboard[piece]==45||chessboard[piece]==46||chessboard[piece]==47||chessboard[piece]==48||chessboard[piece]==31||chessboard[piece]==32||chessboard[piece]==33||chessboard[piece]==34||chessboard[piece]==35||chessboard[piece]==36||chessboard[piece]==37||chessboard[piece]==38){
+    int pieceLocation = rand()%64;
+    int piece = chessboard[pieceLocation];
+    if(piece != 0){
         i=1;
     }
   }
@@ -60,7 +61,7 @@ void generateMoves(int pieceLocation){
   int tempLocation;
   int numberofMoves=0;
   int squareValue=checkSquare(pieceLocation);
-  if(chessboard[piece]==41||chessboard[piece]==48||chessboard[piece]==11||chessboard[piece]==18){
+  if(piece==41||piece==48||piece==11||piece==18){
     for(int x=xCoordinate+1; x<8; x++){
       tempLocation=(yCoordinate*8+x);
       if(squareValue==checkSquare(tempLocation)){
@@ -106,7 +107,7 @@ void generateMoves(int pieceLocation){
       }
     }
   }
-  if(chessboard[piece]==43||chessboard[piece]==46||chessboard[piece]==13||chessboard[piece]==16){
+  if(piece==43||piece==46||piece==13||piece==16){
     for(int x=xCoordinate+1, y=yCoordinate+1; x<8 && y<8; x++, y++){
       tempLocation=(y*8+x);
       if(squareValue==checkSquare(tempLocation)){
@@ -152,7 +153,7 @@ void generateMoves(int pieceLocation){
       }
     }
   }
-  if(chessboard[piece]==42||chessboard[piece]==47||chessboard[piece]==12||chessboard[piece]==17){
+  if(piece==42||piece==47||piece==12||piece==17){
     int x = xCoordinate + 2;
     int y = yCoordinate + 1;
     tempLocation = y*8+x;
@@ -226,7 +227,7 @@ void generateMoves(int pieceLocation){
       }
     }
   }
-  if(chessboard[piece]==14||chessboard[piece]==44){
+  if(piece==14||piece==44){
     for(int x=xCoordinate+1; x<8; x++){
       tempLocation=(yCoordinate*8+x);
       if(squareValue==checkSquare(tempLocation)){
@@ -316,7 +317,161 @@ void generateMoves(int pieceLocation){
       }
     }
   }
-
+  if(piece == 45||piece == 15){
+    for(int x=xCoordinate+1; x<8; x++){
+      if(xCoordinate == x + 2){
+        break;
+      }
+      tempLocation=(yCoordinate*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+      if(xCoordinate == x + 2){
+        break;
+      }
+    }
+    for(int x=xCoordinate-1; x >= 0; x--){
+      if(xCoordinate == x - 2){
+        break;
+      }
+      tempLocation=(yCoordinate*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int y=yCoordinate + 1; y<8; y++){
+      if(yCoordinate == y + 2){
+        break;
+      }
+      tempLocation=(y*8+xCoordinate);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int y=yCoordinate-1; y >= 0; y--){
+      if(yCoordinate == y - 2){
+        break;
+      }
+      tempLocation=(y*8+xCoordinate);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int x=xCoordinate+1, y=yCoordinate+1; x<8 && y<8; x++, y++){
+      if(xCoordinate == x + 2){
+        break;
+      }
+      if(yCoordinate == x + 2){
+        break;
+      }
+      tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int x=xCoordinate+1, y=yCoordinate-1; x<8 && y >= 0; x++, y--){
+      if(xCoordinate == x + 2){
+        break;
+      }
+      if(yCoordinate == x - 2){
+        break;
+      }
+      tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int x=xCoordinate-1, y=yCoordinate+1; x >= 0 && y<8; x--, y++){
+      if(xCoordinate == x - 2){
+        break;
+      }
+      if(yCoordinate == x + 2){
+        break;
+      }
+      tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+    for(int x=xCoordinate-1, y=yCoordinate-1; x >= 0 && y >= 0; x--, y--){
+      if(xCoordinate == x - 2){
+        break;
+      }
+      if(yCoordinate == x - 2){
+        break;
+      }
+      tempLocation=(y*8+x);
+      if(squareValue==checkSquare(tempLocation)){
+        break;
+      }
+      moves[numberofMoves][0]=tempLocation;
+      numberofMoves+=1;
+      if(checkSquare(tempLocation) != 0){
+        break;
+      }
+    }
+  }
+  if(piece > 20 && piece < 39){
+    for(int x = 0; x < 1; x++){
+      if(yCoordinate == 1){
+        tempLocation = (yCoordinate+1)*8+xCoordinate;
+        if(checkSquare(tempLocation) != 0){
+          break;
+        }
+        else{
+          moves[numberofMoves][0] = tempLocation;
+          numberofMoves += 1;
+          break;
+        }
+      }
+      if(yCoordinate == 6){
+        tempLocation = (yCoordinate-1)*8+xCoordinate;
+        if(checkSquare(tempLocation) != 0){
+          break;
+        }
+        else{
+          moves[numberofMoves][0] = tempLocation;
+          numberofMoves += 1;
+          break;
+        }
+      }
+    }
+  }
 }
 float evaluatePosition(int board[64]){
   //piece evaluation
