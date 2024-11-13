@@ -29,7 +29,7 @@ void playFirst(){
     srand(time(0));
     int pieceLocation = rand()%64;
     int piece = chessboard[pieceLocation];
-    if(piece != 0){
+    if(piece != 0 && piece > 30){
         i=1;
     }
   }
@@ -51,7 +51,7 @@ int checkSquare(int square){
     return 0;
   }
 }
-void generateMoves(int pieceLocation){
+int generateMoves(int pieceLocation){
   int moves[40][2];
   int piece=chessboard[pieceLocation];
   int xCoordinate=(pieceLocation % 8);
@@ -472,6 +472,9 @@ void generateMoves(int pieceLocation){
       }
     }
   }
+  srand(time(0));
+  int move = tempLocation * 1000 + (moves[rand() % sizeof(moves)][0]);
+  return move;
 }
 float evaluatePosition(int board[64]){
   //piece evaluation
