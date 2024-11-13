@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <ctime>
+//#include <Servo.h>
 
 int chessboard[64] = {11,12,13,14,15,16,17,18,
                        21,22,23,24,25,26,27,28,
@@ -9,6 +10,10 @@ int chessboard[64] = {11,12,13,14,15,16,17,18,
                        0,0,0,0,0,0,0,0,
                        31,32,33,34,35,36,37,38,
                        41,42,43,44,45,46,47,48};
+/*Servo servo1;
+Servo servo2;*/
+int stepsFromBeginning;
+
 class move{
   public:
     int startSquare;
@@ -23,16 +28,20 @@ class move{
       chessboard[startSquare]=startValue;
       chessboard[endSquare]=endValue;
     }
-  };
+};
 void playFirst(){
+  int pieceLocation;
   for(int i=0; i==1; i){
     srand(time(0));
-    int pieceLocation = rand()%64;
+    pieceLocation = rand()%64;
     int piece = chessboard[pieceLocation];
-    if(piece != 0 && piece > 30){
+    if(piece > 30){
         i=1;
     }
   }
+  move movetoPlay = generateMoves(pieceLocation);
+
+
   /*int piece = chessboard[pieceId];
   if(piece == 41 || piece == 48) {
     for (int i =0; i==1;i){
@@ -51,7 +60,7 @@ int checkSquare(int square){
     return 0;
   }
 }
-int generateMoves(int pieceLocation){
+move generateMoves(int pieceLocation){
   int moves[40][2];
   int piece=chessboard[pieceLocation];
   int xCoordinate=(pieceLocation % 8);
@@ -473,8 +482,10 @@ int generateMoves(int pieceLocation){
     }
   }
   srand(time(0));
-  int move = tempLocation * 1000 + (moves[rand() % sizeof(moves)][0]);
-  return move;
+  move movetoPlay;
+  movetoPlay.startSquare = pieceLocation;
+  movetoPlay.endSquare = moves[rand() % (sizeof(moves) + 1)][0];
+  return movetoPlay;
 }
 float evaluatePosition(int board[64]){
   //piece evaluation
@@ -661,6 +672,13 @@ float evaluatePosition(int board[64]){
     }
     evaluationScore=(whiteScore - blackScore)/100;
     return evaluationScore;
+}
+void playMechanically(move movetoPlay){
+  float servoAngle[64][2] = {};
+  int stepsFromDefault[64][2] = {};
+
+  /*servo1.write(servoAngle[movetoPlay.startSquare][0]);
+  servo2.write(servoAngle[movetoPlay.startSquare][1]);*/
 }
 
 void setup() {
